@@ -1,0 +1,553 @@
+/* ======================================= */
+/* 0. إعادة الضبط والخطوط والمتغيرات العصرية */
+/* ======================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+
+:root {
+    /* لوحة الألوان */
+    --primary-color: #0077b6;
+    --secondary-color: #00b4d8;
+    --accent-color: #90e0ef;
+    --background-main: #f0f4f8;
+    --background-card: #ffffff;
+    --text-dark: #212529;
+    --text-light: #ffffff;
+    
+    /* Neumorphism & الظلال */
+    --neumorphic-shadow-light: 4px 4px 8px rgba(174, 174, 192, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.8);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05); /* ظل أنيق للعناصر */
+    
+    --border-radius-large: 15px;
+    --transition-speed: 0.4s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background-color: var(--background-main);
+    direction: rtl;
+}
+
+/* التنسيقات الأساسية */
+.container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 70px;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 120%;
+    max-width: 150px;
+    height: 6px;
+    background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
+    border-radius: 3px;
+    opacity: 0.8;
+}
+
+/* ======================================= */
+/* 1. رأس الصفحة والتنقل (Header & Nav) */
+/* ======================================= */
+
+.main-header {
+    background: var(--background-card);
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.highlight {
+    color: var(--primary-color);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 10px 20px;
+    display: block;
+    font-weight: 600;
+    transition: color var(--transition-speed);
+    position: relative;
+}
+
+/* تطبيق تأثير التركيز البؤري العائم (Focus Hover Glow) */
+.main-nav ul li a:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(0, 119, 182, 0.2); 
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0px; 
+    right: 50%;
+    transform: translateX(50%);
+    width: 0;
+    height: 4px; 
+    background: var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color); /* تأثير الوهج */
+    transition: width var(--transition-speed) ease-in-out;
+    border-radius: 2px;
+}
+
+.main-nav ul li a:hover::after {
+    width: 80%;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* ======================================= */
+/* 2. الأزرار (Buttons) */
+/* ======================================= */
+
+.btn {
+    display: inline-block;
+    padding: 14px 40px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed);
+    border: 2px solid transparent;
+    letter-spacing: 0.5px;
+}
+
+.primary-btn {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    box-shadow: 0 10px 25px rgba(0, 119, 182, 0.4);
+}
+
+.primary-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 119, 182, 0.6);
+    opacity: 0.95;
+}
+
+.secondary-btn {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow-soft);
+}
+
+.secondary-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    transform: scale(1.05);
+}
+
+/* ======================================= */
+/* 3. قسم البطل (Hero Section) */
+/* ======================================= */
+
+.hero-section {
+    position: relative;
+    height: 900px;
+    display: flex;
+    /* محاذاة المحتوى لليمين */
+    justify-content: flex-end; 
+    align-items: center;
+    text-align: right;
+    margin-bottom: 50px;
+    
+    /* تطبيق تأثير الزوايا المائلة (Skewed Borders) */
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+    transition: clip-path var(--transition-speed);
+    
+    /* تحديث مسار الصورة وضبطها لتكون عصرية */
+    background-image: url('../assets/images/Pharmacist.jpg');
+    background-size: cover;
+    background-position: top; /* تحريك نقطة تركيز الصورة لتظهر الصيدلي */
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* تراكب لوني يجعل النص واضحًا في المنطقة اليمنى */
+    background: linear-gradient(to left, rgba(240, 244, 248, 1) 0%, rgba(240, 244, 248, 0.8) 10%, rgba(240, 244, 248, 0.1) 80%);
+}
+
+.hero-section .container {
+    z-index: 10;
+    /* تقليل عرض الحاوية لترك مساحة أكبر للصورة على اليسار */
+    max-width: 1100px;
+    padding-left: 390px;
+    padding-bottom: 250px;
+}
+
+.hero-section .subtitle {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.hero-section h2 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    line-height: 1.7;
+    /* تطبيق توهج النص (Text Glow) */
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4),
+                 3px 3px 15px rgba(0, 119, 182, 0.15);
+}
+
+.hero-section .highlight {
+    color: var(--primary-color);
+    text-shadow: 0 0 8px rgba(0, 180, 216, 0.6); /* توهج قوي قليلاً */
+}
+
+
+/* ======================================= */
+/* 4. قسم التركيز (Focus Section) - Neumorphism */
+/* ======================================= */
+
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card-neumorphism {
+    background-color: var(--background-main);
+    padding: 35px;
+    border-radius: var(--border-radius-large);
+    text-align: center;
+    box-shadow: var(--neumorphic-shadow-light);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    perspective: 1000px; 
+    border: none;
+}
+
+/* تأثير العمق ثلاثي الأبعاد (3D Depth) عند التحويم */
+.card-neumorphism:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); 
+    transform: translateY(-8px) rotateY(3deg); 
+}
+
+.card-neumorphism:hover .icon-primary {
+    transform: scale(1.1);
+    transition: transform 0.5s;
+}
+
+.icon-primary {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 180, 216, 0.4));
+    transition: transform 0.5s;
+}
+
+.focus-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+
+/* ======================================= */
+/* 5. قسم الأقسام (Categories) */
+/* ======================================= */
+
+.categories-section {
+    background-color: var(--background-card);
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.category-item {
+    height: 300px;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+}
+
+.category-item:hover {
+    transform: scale(1.03);
+}
+
+.category-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    color: var(--text-light);
+}
+
+.category-content h4 {
+    font-size: 1.3rem;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ======================================= */
+/* 6. قسم الرؤية (Vision) - CTA Section */
+/* ======================================= */
+
+.vision-section {
+    padding: 70px 0;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    text-align: center;
+}
+
+.vision-card {
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.vision-card i {
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.vision-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.vision-card p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+
+/* ======================================= */
+/* 7. قسم التواصل (Contact) - Glassmorphism */
+/* ======================================= */
+
+.contact-section {
+    /* رابط وهمي لخلفية Glassmorphism */
+    background-image: url('assets/images/contact-background.jpg');
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+
+/* طبقة تراكب هادئة */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(240, 244, 248, 0.7); /* طبقة شفافة فاتحة */
+    z-index: 1;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: center;
+    position: relative; 
+    z-index: 2; 
+}
+
+.contact-detail {
+    /* تطبيق تأثير الزجاج (Glassmorphism) */
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s, border-bottom 0.3s;
+}
+
+.contact-detail:hover {
+    transform: scale(1.05); 
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+.contact-detail i {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.contact-highlight {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* ======================================= */
+/* 8. تذييل الصفحة (Footer) */
+/* ======================================= */
+
+.main-footer {
+    background-color: var(--text-dark);
+    color: #aeb5c0;
+    padding: 20px 0;
+    font-size: 0.95rem;
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: right;
+}
+
+.social-links a {
+    color: var(--text-light);
+    margin-right: 20px;
+    font-size: 1.4rem;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+
+/* ======================================= */
+/* 9. الاستجابة (Responsive Design) */
+/* ======================================= */
+
+@media (max-width: 992px) {
+    .main-header .container {
+        flex-wrap: wrap;
+    }
+    
+    .main-nav {
+        display: none; 
+        width: 100%;
+        margin-top: 10px;
+        order: 3; 
+    }
+
+    .menu-toggle {
+        display: block; 
+    }
+
+    /* إزالة تأثير الزاوية المائلة في الجوال */
+    .hero-section {
+        clip-path: none; 
+        margin-bottom: 0;
+        height: 400px;
+        text-align: center;
+        /* إزالة تثبيت الخلفية في الجوال */
+        background-attachment: scroll; 
+    }
+    
+    .hero-overlay {
+        background: rgba(240, 244, 248, 0.8);
+    }
+    .hero-section .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    /* التعديل الأول: للأجهزة اللوحية الأصغر (992px) */
+    .hero-section .subtitle {
+        font-size: 1.1rem; /* تصغير حجم العنوان الفرعي */
+    }
+    .hero-section h2 {
+        font-size: 2.5rem; /* تصغير العنوان الرئيسي */
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    .section-padding {
+        padding: 70px 0;
+    }
+}
+
+
+@media (max-width: 576px) {
+    /* التعديل الثاني: لأجهزة الجوال (576px) */
+    .hero-section .subtitle {
+        font-size: 1rem; /* تصغير حجم العنوان الفرعي */
+    }
+    .hero-section h2 {
+        font-size: 2rem; /* تصغير العنوان الرئيسي أكثر */
+        line-height: 1.5; /* تعديل تباعد الأسطر لراحة العين */
+    }
+    .primary-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+    .focus-grid, .categories-grid, .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .social-links {
+        margin-top: 15px;
+    }
+}
