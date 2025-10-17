@@ -207,7 +207,7 @@ body {
     transition: clip-path var(--transition-speed);
     
     /* تحديث مسار الصورة وضبطها لتكون عصرية */
-    background-image: url('../assets/images/Pharmacist.jpg');
+    background-image: url('assets/images/Pharmacist.jpg');
     background-size: cover;
     background-position: top; /* تحريك نقطة تركيز الصورة لتظهر الصيدلي */
     background-attachment: fixed;
@@ -550,4 +550,5 @@ body {
     .social-links {
         margin-top: 15px;
     }
+
 }
